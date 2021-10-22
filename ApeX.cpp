@@ -1,10 +1,8 @@
-#include <Windows.h>
-#include <string>
 #include "ApeX.h"
 
 namespace ApeX {
 
-	void Print::printMessage(std::string message, int windowWidth, char cornerStyle, char topAndBottomBorderStyle, char sideBorderStyle, bool printTop, bool printBottom) {
+	void Print::printMessage(std::string message, int windowWidth, char cornerStyle, char topAndBottomBorderStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom) {
         if (windowWidth < message.length()) {
             ApeX::Error::error(ApeX::Error::errorType(1), "Width of the frame must be more or equal to the message's length", "Width of the frame "  + std::to_string(windowWidth) + " is less than the message's length " + std::to_string(message.length()));
         }
@@ -23,14 +21,19 @@ namespace ApeX {
                 std::cout << sideBorderStyle;
             }
 
-            for (int i = message.length(); i < windowWidth; i++) {
-                if (front) {
-                    message = " " + message;
+            if (isCentered) {
+                for (int i = message.length(); i < windowWidth; i++) {
+                    if (front) {
+                        message = " " + message;
+                    }
+                    else {
+                        message = message + " ";
+                    }
+                    front = !front;
                 }
-                else {
-                    message = message + " ";
-                }
-                front = !front;
+            }
+            else {
+                message = " " + message;
             }
             std::cout << message.c_str();
 
@@ -74,9 +77,9 @@ namespace ApeX {
 
         std::cout << "\n";
 
-        ApeX::Print::printMessage("APE-X", 24, 43, 45, 124, false, false);
-        ApeX::Print::printMessage("Version 0.1.4 alpha", 24, 43, 45, 124, false, false);
-        ApeX::Print::printMessage("ALPHA. WORK IN PROGRESS", 24, 43, 45, 124, false, false);
+        ApeX::Print::printMessage("APE-X", 24, 43, 45, 124, true, false, false);
+        ApeX::Print::printMessage("Version 0.1.6 alpha", 24, 43, 45, 124, true, false, false);
+        ApeX::Print::printMessage("ALPHA. WORK IN PROGRESS", 24, 43, 45, 124, true, false, false);
 
         std::cout << "\n";
 

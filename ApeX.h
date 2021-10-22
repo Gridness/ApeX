@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <Windows.h>
+#include <string>
 
 #pragma once
 
@@ -7,7 +9,7 @@ namespace ApeX {
 
 	class Print {
 	public:
-		static void printMessage(std::string message, int windowWidth, char cornerStyle = '+', char topAndBottomBorderStyle = '-', char sideBorderStyle = '|', bool printTop = true, bool printBottom = true);
+		static void printMessage(std::string message, int windowWidth, char cornerStyle = '+', char topAndBottomBorderStyle = '-', char sideBorderStyle = '|', bool isCentered = true, bool printTop = true, bool printBottom = true);
 	};
 
 	class Copyright {
