@@ -24,7 +24,8 @@ namespace ApeX {
 	public:
 		enum errorType {
 			SOMETHING_WENT_WRONG = -1,
-			INCORRECT_LENGTH = 1
+			UNKNOWN,
+			INCORRECT_LENGTH
 		};
 		static void error(errorType errorType, std::string errorMessage, std::string additionalInfo = NULL);
 	};
