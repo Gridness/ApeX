@@ -5,8 +5,10 @@ Go to the releases tab and pick a version of ApeX library of your choice. There 
 # Classes and methods
 ## Print
 This class contains methods to display beautiful frame-style menus in console
-### printMessage(std::string message, int windowWidth, char topAndBottomBorderStyle, char cornerStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom)
+### stylizedMessage(std::string message, int windowWidth, char topAndBottomBorderStyle, char cornerStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom)
 This method displays a message in a sylized frame
+### centeredMessage(std::message, int relativeWidth, bool endLine)
+This method displays a centered message
 ## Copyright
 This temporary class contains methods to display copyright information
 ### copyright()
