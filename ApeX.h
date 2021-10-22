@@ -4,6 +4,8 @@
 #include <string>
 
 #pragma once
+#pragma omp parallel for
+#pragma omp parallel while
 
 namespace ApeX {
 

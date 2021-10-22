@@ -81,7 +81,7 @@ namespace ApeX {
         std::cout << "\n";
 
         ApeX::Print::printMessage("APE-X", 25, 43, 45, 124, true, false, false);
-        ApeX::Print::printMessage("Version 0.1.7.1 alpha", 25, 43, 45, 124, true, false, false);
+        ApeX::Print::printMessage("Version 0.2 alpha", 25, 43, 45, 124, true, false, false);
         ApeX::Print::printMessage("ALPHA. WORK IN PROGRESS", 25, 43, 45, 124, true, false, false);
 
         std::cout << "\n";
