@@ -34,6 +34,9 @@ namespace ApeX {
             }
             else {
                 message = " " + message;
+                for (int i = message.length(); i < windowWidth; i++) {
+                    message += " ";
+                }
             }
             std::cout << message.c_str();
 
@@ -77,9 +80,9 @@ namespace ApeX {
 
         std::cout << "\n";
 
-        ApeX::Print::printMessage("APE-X", 24, 43, 45, 124, true, false, false);
-        ApeX::Print::printMessage("Version 0.1.6 alpha", 24, 43, 45, 124, true, false, false);
-        ApeX::Print::printMessage("ALPHA. WORK IN PROGRESS", 24, 43, 45, 124, true, false, false);
+        ApeX::Print::printMessage("APE-X", 25, 43, 45, 124, true, false, false);
+        ApeX::Print::printMessage("Version 0.1.7 alpha", 25, 43, 45, 124, true, false, false);
+        ApeX::Print::printMessage("ALPHA. WORK IN PROGRESS", 25, 43, 45, 124, true, false, false);
 
         std::cout << "\n";
 
