@@ -2,7 +2,7 @@
 
 namespace ApeX {
 
-	void Print::printMessage(std::string message, int windowWidth, char cornerStyle, char topAndBottomBorderStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom) {
+	void Print::stylizedMessage(std::string message, int windowWidth, char cornerStyle, char topAndBottomBorderStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom) {
         if (windowWidth < message.length()) {
             ApeX::Error::error(ApeX::Error::errorType(1), "Width of the frame must be more or equal to the message's length", "Width of the frame "  + std::to_string(windowWidth) + " is less than the message's length " + std::to_string(message.length()));
         }
@@ -54,6 +54,28 @@ namespace ApeX {
         }
 	}
 
+    void Print::centeredMessage(std::string message, int relativeWidth, bool endLine)
+    {
+        bool front = true;
+
+        for (int i = message.length(); i < relativeWidth; i++) {
+            if (front) {
+                message = " " + message;
+            }
+            else {
+                message = message + " ";
+            }
+            front = !front;
+        }
+
+        if (endLine) {
+            std::cout << message.c_str() << "\n";
+        }
+        else {
+            std::cout << message.c_str();
+        }     
+    }
+
     void Copyright::copyright()
     {
         std::vector<std::vector<char>> logo = {
@@ -80,9 +102,13 @@ namespace ApeX {
 
         std::cout << "\n";
 
-        ApeX::Print::printMessage("APE-X", 25, 43, 45, 124, true, false, false);
-        ApeX::Print::printMessage("Version 0.2 alpha", 25, 43, 45, 124, true, false, false);
-        ApeX::Print::printMessage("ALPHA. WORK IN PROGRESS", 25, 43, 45, 124, true, false, false);
+        //ApeX::Print::stylizedMessage("APE-X", 25, 43, 45, 124, true, false, false);
+        //ApeX::Print::stylizedMessage("Version 0.2 alpha", 25, 43, 45, 124, true, false, false);
+        //ApeX::Print::stylizedMessage("ALPHA. WORK IN PROGRESS", 25, 43, 45, 124, true, false, false);
+
+        ApeX::Print::centeredMessage("APE-X", 27, true);
+        ApeX::Print::centeredMessage("Version 0.2 alpha", 27, true);
+        ApeX::Print::centeredMessage("ALPHA. WORK IN PROGRESS", 27, true);
 
         std::cout << "\n";
 
