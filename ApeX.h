@@ -14,7 +14,17 @@ namespace ApeX {
 	public:
 		static void copyright();
 	private:
+		// static bool firstLaunch;
 		static void displayCopyrightInfo();
+	};
+
+	class Error {
+	public:
+		enum errorType {
+			SOMETHING_WENT_WRONG = -1,
+			INCORRECT_LENGTH = 1
+		};
+		static void error(errorType errorType, std::string errorMessage, std::string additionalInfo = NULL);
 	};
 
 }
