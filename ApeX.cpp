@@ -1,5 +1,23 @@
 #include "ApeX.h"
 
+#define RESET   "\033[0m"
+#define BLACK   "\033[30m"      /* Black */
+#define RED     "\033[31m"      /* Red */
+#define GREEN   "\033[32m"      /* Green */
+#define YELLOW  "\033[33m"      /* Yellow */
+#define BLUE    "\033[34m"      /* Blue */
+#define MAGENTA "\033[35m"      /* Magenta */
+#define CYAN    "\033[36m"      /* Cyan */
+#define WHITE   "\033[37m"      /* White */
+#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
+#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
+#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
+#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
+#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
+#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
+#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
+#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+
 namespace ApeX {
 
 	void Print::stylizedMessage(std::string message, int windowWidth, char cornerStyle, char topAndBottomBorderStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom) {
@@ -76,6 +94,47 @@ namespace ApeX {
         }     
     }
 
+    void Print::line(int lineType, int length, char texture, bool hasCorners, char cornerTexture)
+    {
+        if (length <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(1), "Length of the line must be more than 0");
+        }
+        else if (lineType != 1 && lineType != 2) {
+            ApeX::Error::error(ApeX::Error::errorType(2), "Inserted line type does not exist");
+        }
+        else if (lineType == 1) {
+            for (int i = 0; i < length; i++) {
+                if (hasCorners) {
+                    if (i == 0 || i == length - 1) {
+                        std::cout << cornerTexture;
+                    }
+                    else {
+                        std::cout << texture;
+                    }
+                }
+                else {
+                    std::cout << texture;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < length; i++) {
+                if (hasCorners) {
+                    if (i == 0 || i == length - 1) {
+                        std::cout << cornerTexture;
+                    }
+                    else {
+                        std::cout << texture;
+                    }
+                }
+                else {
+                    std::cout << texture;
+                }
+                std::cout << "\n";
+            }
+        }
+    }
+
     void Copyright::copyright()
     {
         std::vector<std::vector<char>> logo = {
@@ -115,7 +174,7 @@ namespace ApeX {
         ApeX::Copyright::displayCopyrightInfo();
 
         Sleep(3000);
-        system("cls");
+        ApeX::Utils::clear();
     }
 
     void Copyright::displayCopyrightInfo()
@@ -128,6 +187,323 @@ namespace ApeX {
     {
         std::cout << "[Error: " << errorType << "] " << errorMessage << "\n";
         std::cout <<  additionalInfo << "\n";
+    }
+
+    //std::ostream& Format::boldOn(std::ostream& os)
+    //{
+    //    return os << "\e[1m";
+    //}
+
+    //std::ostream& Format::boldOff(std::ostream& os)
+    //{
+    //    return os << "\e[0m";
+    //}
+
+    //std::ostream& Format::underlineOn(std::ostream& os)
+    //{
+    //    return os << "\033[4m";
+    //}
+
+    //std::ostream& Format::underlineOff(std::ostream& os)
+    //{
+    //    return os << "\033[0m";
+    //}
+
+    void Output::showVector(std::vector<int> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }  
+    }
+
+    void Output::showVector(std::vector<short> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Output::showVector(std::vector<long> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Output::showVector(std::vector<float> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Output::showVector(std::vector<double> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Output::showVector(std::vector<bool> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Output::showVector(std::vector<char> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Output::showVector(std::vector<std::string> vector, int rows, bool tabulated)
+    {
+        if (vector.size() <= 0) {
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
+        }
+        else {
+            const int valuesInRow = vector.size() / rows;
+            int counter = 0;
+            if (tabulated) {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << "\t";
+                    counter++;
+                }
+            }
+            else {
+                for (int i = 0; i < vector.size(); i++) {
+                    if (counter == valuesInRow) {
+                        std::cout << "\n";
+                        counter = 0;
+                    }
+                    std::cout << vector[i] << " ";
+                    counter++;
+                }
+            }
+        }
+    }
+
+    void Utils::clear()
+    {
+        system("cls");
+    }
+
+    void Utils::loading(int mode, int amountOfIterations, float animationSpeed, std::string msg)
+    {
+        switch (mode)
+        {
+        case 0:
+            for (int i = 0; i < amountOfIterations * 4; i++) {
+                std::cout << "|";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+                std::cout << "/";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+                std::cout << "-";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+                std::cout << "\\";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+            }
+            break;
+        case 1:
+            for (int i = 0; i < amountOfIterations * 4; i++) {
+                std::cout << msg << " |";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+                std::cout << msg << " /";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+                std::cout << msg << " -";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+                std::cout << msg << " \\";
+                Sleep(animationSpeed * 1000);
+                ApeX::Utils::clear();
+            }
+            break;
+        case 2:
+            break;
+        default:
+            ApeX::Error::error(ApeX::Error::errorType(3), "There is no such mode called " + std::to_string(mode));
+            break;
+        }
     }
 
 }
