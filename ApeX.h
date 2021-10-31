@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <chrono>
 #include <sstream>
+#include <ctime> 
 
 #pragma once
 #pragma omp parallel for

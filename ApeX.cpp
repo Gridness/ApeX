@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "ApeX.h"
 
 #define FORMATTING_DEFINES 0
@@ -20,6 +22,12 @@
     #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
     #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 #endif
+
+const unsigned short X_VER = 0;
+const unsigned short Y_VER = 2;
+const unsigned short Z_VER = 1;
+
+const std::string VERSION_TYPE = "alpha";
 
 namespace ApeX {
 
@@ -155,8 +163,8 @@ namespace ApeX {
             {'#', '#', '#', '#', '#', '#', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '#', '#', '#', '#', '#'},
         };
 
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 26; j++) {
+        for (int i = 0; i < logo.size(); i++) {
+            for (int j = 0; j < logo[i].size(); j++) {
                 std::cout << logo[i][j];
             }
             std::cout << "\n";
@@ -169,7 +177,12 @@ namespace ApeX {
         //ApeX::Print::stylizedMessage("ALPHA. WORK IN PROGRESS", 25, 43, 45, 124, true, false, false);
 
         ApeX::Print::centeredMessage("APE-X", 27, true);
-        ApeX::Print::centeredMessage("Version 0.2 alpha", 27, true);
+        if (Z_VER == 0) {
+            ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + " " + VERSION_TYPE, 27, true);
+        }
+        else {
+            ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + "." + std::to_string(Z_VER) + " " + VERSION_TYPE, 27, true);
+        }
         ApeX::Print::centeredMessage("ALPHA. WORK IN PROGRESS", 27, true);
 
         std::cout << "\n";
@@ -182,7 +195,18 @@ namespace ApeX {
 
     void Copyright::displayCopyrightInfo()
     {
-        std::cout << "ApeX (c) Gridness 2021\n";
+        time_t theTime = time(NULL);
+        struct tm* aTime = localtime(&theTime);
+
+        int year = aTime->tm_year + 1900;
+
+        if (year == 2021) {
+            std::cout << "ApeX (c) Gridness 2021\n";
+        }
+        else {
+            std::cout << "ApeX (c) Gridness 2021 - " << year << "\n";
+        }
+        
         std::cout << "This software is disributed via MIT license. All rights reserved";
     }
 
