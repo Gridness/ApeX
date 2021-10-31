@@ -1,22 +1,25 @@
 #include "ApeX.h"
 
-#define RESET   "\033[0m"
-#define BLACK   "\033[30m"      /* Black */
-#define RED     "\033[31m"      /* Red */
-#define GREEN   "\033[32m"      /* Green */
-#define YELLOW  "\033[33m"      /* Yellow */
-#define BLUE    "\033[34m"      /* Blue */
-#define MAGENTA "\033[35m"      /* Magenta */
-#define CYAN    "\033[36m"      /* Cyan */
-#define WHITE   "\033[37m"      /* White */
-#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
-#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
-#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
-#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
-#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
-#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
-#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
-#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+#define FORMATTING_DEFINES 0
+#if FORMATTING_DEFINES
+    #define RESET   "\033[0m"
+    #define BLACK   "\033[30m"      /* Black */
+    #define RED     "\033[31m"      /* Red */
+    #define GREEN   "\033[32m"      /* Green */
+    #define YELLOW  "\033[33m"      /* Yellow */
+    #define BLUE    "\033[34m"      /* Blue */
+    #define MAGENTA "\033[35m"      /* Magenta */
+    #define CYAN    "\033[36m"      /* Cyan */
+    #define WHITE   "\033[37m"      /* White */
+    #define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
+    #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
+    #define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
+    #define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
+    #define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
+    #define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
+    #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
+    #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+#endif
 
 namespace ApeX {
 
@@ -188,26 +191,6 @@ namespace ApeX {
         std::cout << "[Error: " << errorType << "] " << errorMessage << "\n";
         std::cout <<  additionalInfo << "\n";
     }
-
-    //std::ostream& Format::boldOn(std::ostream& os)
-    //{
-    //    return os << "\e[1m";
-    //}
-
-    //std::ostream& Format::boldOff(std::ostream& os)
-    //{
-    //    return os << "\e[0m";
-    //}
-
-    //std::ostream& Format::underlineOn(std::ostream& os)
-    //{
-    //    return os << "\033[4m";
-    //}
-
-    //std::ostream& Format::underlineOff(std::ostream& os)
-    //{
-    //    return os << "\033[0m";
-    //}
 
     void Output::showVector(std::vector<int> vector, int rows, bool tabulated)
     {
@@ -462,47 +445,21 @@ namespace ApeX {
         system("cls");
     }
 
-    void Utils::loading(int mode, int amountOfIterations, float animationSpeed, std::string msg)
+    void Utils::loading(int amountOfIterations, float animationSpeed)
     {
-        switch (mode)
-        {
-        case 0:
-            for (int i = 0; i < amountOfIterations * 4; i++) {
-                std::cout << "|";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-                std::cout << "/";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-                std::cout << "-";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-                std::cout << "\\";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-            }
-            break;
-        case 1:
-            for (int i = 0; i < amountOfIterations * 4; i++) {
-                std::cout << msg << " |";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-                std::cout << msg << " /";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-                std::cout << msg << " -";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-                std::cout << msg << " \\";
-                Sleep(animationSpeed * 1000);
-                ApeX::Utils::clear();
-            }
-            break;
-        case 2:
-            break;
-        default:
-            ApeX::Error::error(ApeX::Error::errorType(3), "There is no such mode called " + std::to_string(mode));
-            break;
+        for (int i = 0; i < amountOfIterations * 4; i++) {
+            std::cout << "|";
+            Sleep(animationSpeed * 1000);
+            std::cout << "\b";
+            std::cout << "/";
+            Sleep(animationSpeed * 1000);
+            std::cout << "\b";
+            std::cout << "-";
+            Sleep(animationSpeed * 1000);
+            std::cout << "\b";
+            std::cout << "\\";
+            Sleep(animationSpeed * 1000);
+            std::cout << "\b";
         }
     }
 

@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <string>
 #include <conio.h>
+#include <chrono>
+#include <sstream>
 
 #pragma once
 #pragma omp parallel for
@@ -17,26 +19,17 @@ namespace ApeX {
 		static void line(int lineType, int length, char texture = '-', bool hasCorners = true, char cornerTexture = '+');
 	};
 
-	class Format {
+	/* class Format {
 	public:
-		static void bold(std::string text);
+		static void bold(bool addToMsg = false, std::string text = NULL);
 		static void italic(std::string text);
 		static void underline(std::string text);
 
-		static void reset(std::string text);
-	};
+		static void reset(bool addToMsg = false, std::string text = NULL);
+	}; */
 
 	class Output {
 	public:
-		static void showArray(int* arr);
-		static void showArray(short* arr);
-		static void showArray(long* arr);
-		static void showArray(float* arr);
-		static void showArray(double* arr);
-		static void showArray(bool* arr);
-		static void showArray(char* arr);
-		static void showArray(std::string* arr);
-
 		static void showVector(std::vector<int> vector, int rows = 1, bool tabulated = false);
 		static void showVector(std::vector<short> vector, int rows = 1, bool tabulated = false);
 		static void showVector(std::vector<long> vector, int rows = 1, bool tabulated = false);
@@ -50,17 +43,21 @@ namespace ApeX {
 	class Utils {
 	public:
 		static void clear();
-		static void backgroundColor(std::string colorParams);
-		static void loading(int mode = 0, int amountOfIterations = 1, float animationSpeed = 0.2, std::string msg = NULL);
+		static void loading(int amountOfIterations = 1, float animationSpeed = 0.2);
 	};
 
-	//class TerminalUI {
-	//public:
-	//	static void initUI(std::vector<std::string> menus, char selectionKey);
-	//private:
-	//	static void color(int color);
-	//	static void goToXY(int x, int y);
-	//};
+	class Debug {
+	public:
+		static void measureExecutionTime();
+	};
+
+	/* class TerminalUI {
+	public:
+		static void initUI(std::vector<std::string> menus, char selectionKey);
+	private:
+		static void color(int color);
+		static void goToXY(int x, int y);
+	}; */
 
 	class Copyright {
 	public:
