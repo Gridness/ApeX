@@ -1,5 +1,6 @@
 # ApeX
 ApeX is a static library for C++ software. Originally it was created to make C++ studying easier, so it has functions to complete common tasks with just one line of code. But who knows, maybe this library will get bigger some day.
+
 P.S. This readme is not finished and it doesn't include some new methods. To see them, check ApeX.h file. Sorry for the inconvenience
 # Recommended version
 0.2.1 alpha
