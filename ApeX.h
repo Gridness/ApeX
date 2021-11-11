@@ -5,7 +5,8 @@
 #include <conio.h>
 #include <chrono>
 #include <sstream>
-#include <ctime> 
+#include <ctime>
+#include <cctype>
 
 #pragma once
 #pragma omp parallel for
@@ -20,14 +21,10 @@ namespace ApeX {
 		static void line(int lineType, int length, char texture = '-', bool hasCorners = true, char cornerTexture = '+');
 	};
 
-	/* class Format {
+	class Format {
 	public:
-		static void bold(bool addToMsg = false, std::string text = NULL);
-		static void italic(std::string text);
-		static void underline(std::string text);
-
-		static void reset(bool addToMsg = false, std::string text = NULL);
-	}; */
+		static void applyColor(std::string mode = "default", std::string msg = NULL, std::string color = NULL);
+	};
 
 	class Output {
 	public:
@@ -39,17 +36,20 @@ namespace ApeX {
 		static void showVector(std::vector<bool> vector, int rows = 1, bool tabulated = false);
 		static void showVector(std::vector<char> vector, int rows = 1, bool tabulated = false);
 		static void showVector(std::vector<std::string> vector, int rows = 1, bool tabulated = false);
+
+        static void show2DVector(std::vector<std::vector<int>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<short>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<long>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<float>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<double>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<bool>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<char>> vector2D, int rows = 1, bool tabulated = false);
+        //static void show2DVector(std::vector<std::vector<std::string>> vector2D, int rows = 1, bool tabulated = false);
 	};
 
 	class Utils {
 	public:
-		static void clear();
 		static void loading(int amountOfIterations = 1, float animationSpeed = 0.2);
-	};
-
-	class Debug {
-	public:
-		static void measureExecutionTime();
 	};
 
 	/* class TerminalUI {
@@ -80,5 +80,32 @@ namespace ApeX {
 		};
 		static void error(errorType errorType, std::string errorMessage, std::string additionalInfo = NULL);
 	};
+
+}
+
+/*Namespace is yet to be implemented*/
+namespace ApeXDebug {
+
+    /*Gather info about the CPU*/
+    class CPU {
+
+    };
+
+    /*Gather info about the RAM*/
+    class RAM {
+
+    };
+
+    /*Gather info about the VRAM*/
+    class VRAM {
+
+    };
+
+    class Debug {
+    public:
+        /* NOT YET IMPLEMENTED */
+        // static void measureExecutionTime(std::string mode = "default");
+        /* NOT YET IMPLEMENTED */
+    };
 
 }

@@ -23,11 +23,22 @@
     #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 #endif
 
-const unsigned short X_VER = 0;
-const unsigned short Y_VER = 2;
-const unsigned short Z_VER = 1;
+#define X_VER 0
+#define Y_VER 2
+#define Z_VER 2
 
-const std::string VERSION_TYPE = "alpha";
+#define DEV_BUILD 1
+#if DEV_BUILD
+    #define VERSION_TYPE "alpha"
+#endif
+
+#if !defined FORMATTING_DEFINES
+    #error FORMATTING_DEFINES is not defined
+#endif
+
+#if !defined DEV_BUILD
+    #error DEV_BUILD is not defined
+#endif
 
 namespace ApeX {
 
@@ -163,9 +174,11 @@ namespace ApeX {
             {'#', '#', '#', '#', '#', '#', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '#', '#', '#', '#', '#'},
         };
 
-        for (int i = 0; i < logo.size(); i++) {
-            for (int j = 0; j < logo[i].size(); j++) {
-                std::cout << logo[i][j];
+        int relativeWidth = logo.size();
+
+        for (auto & i : logo) {
+            for (char j : i) {
+                std::cout << j;
             }
             std::cout << "\n";
         }
@@ -176,21 +189,30 @@ namespace ApeX {
         //ApeX::Print::stylizedMessage("Version 0.2 alpha", 25, 43, 45, 124, true, false, false);
         //ApeX::Print::stylizedMessage("ALPHA. WORK IN PROGRESS", 25, 43, 45, 124, true, false, false);
 
-        ApeX::Print::centeredMessage("APE-X", 27, true);
+        ApeX::Print::centeredMessage("APE-X", relativeWidth, true);
         if (Z_VER == 0) {
             ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + " " + VERSION_TYPE, 27, true);
         }
         else {
-            ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + "." + std::to_string(Z_VER) + " " + VERSION_TYPE, 27, true);
+            ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + "." + std::to_string(Z_VER) + " " + VERSION_TYPE, relativeWidth, true);
         }
-        ApeX::Print::centeredMessage("ALPHA. WORK IN PROGRESS", 27, true);
+
+        if(VERSION_TYPE != NULL){
+            std::string versionType = VERSION_TYPE;
+            for(char & i : versionType){
+                i = ::toupper(i);
+            }
+            ApeX::Print::centeredMessage(versionType + ". WORK IN PROGRESS", relativeWidth, true);
+        }
 
         std::cout << "\n";
 
         ApeX::Copyright::displayCopyrightInfo();
+        ApeX::Print::centeredMessage("", relativeWidth);
+        ApeX::Utils::loading(3);
 
-        Sleep(3000);
-        ApeX::Utils::clear();
+        //Sleep(3000);
+        system("cls");
     }
 
     void Copyright::displayCopyrightInfo()
@@ -218,7 +240,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<int> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -249,7 +271,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<short> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -280,7 +302,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<long> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -311,7 +333,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<float> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -342,7 +364,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<double> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -373,7 +395,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<bool> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -404,7 +426,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<char> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -435,7 +457,7 @@ namespace ApeX {
 
     void Output::showVector(std::vector<std::string> vector, int rows, bool tabulated)
     {
-        if (vector.size() <= 0) {
+        if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
         else {
@@ -464,14 +486,41 @@ namespace ApeX {
         }
     }
 
-    void Utils::clear()
-    {
-        system("cls");
+    void Output::show2DVector(std::vector<std::vector<int>> vector2D, int rows, bool tabulated) {
+        if(vector2D.empty()){
+            ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent 2D vector was given");
+        } else {
+            const int valuesInRow = vector2D.size() / rows;
+            int counter = 0;
+            if(tabulated){
+                for(int i = 0; i < vector2D.size(); i++){
+                    for(int j = 0; j < vector2D[i].size(); j++){
+                        if(counter == valuesInRow){
+                            std::cout << "\n";
+                            counter = 0;
+                        }
+                        std::cout << vector2D[i][j] << "\t";
+                        counter++;
+                    }
+                }
+            } else {
+                for(int i = 0; i < vector2D.size(); i++){
+                    for(int j = 0; j < vector2D[i].size(); j++){
+                        if(counter == valuesInRow){
+                            std::cout << "\n";
+                            counter = 0;
+                        }
+                        std::cout << vector2D[i][j] << " ";
+                        counter++;
+                    }
+                }
+            }
+        }
     }
 
     void Utils::loading(int amountOfIterations, float animationSpeed)
     {
-        for (int i = 0; i < amountOfIterations * 4; i++) {
+        for (int i = 0; i < amountOfIterations; i++) {
             std::cout << "|";
             Sleep(animationSpeed * 1000);
             std::cout << "\b";
