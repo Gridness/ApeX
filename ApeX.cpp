@@ -25,7 +25,7 @@
 
 #define X_VER 0
 #define Y_VER 2
-#define Z_VER 2
+#define Z_VER 3
 
 #define DEV_BUILD 1
 #if DEV_BUILD
@@ -174,11 +174,11 @@ namespace ApeX {
             {'#', '#', '#', '#', '#', '#', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '\040', '#', '#', '#', '#', '#'},
         };
 
-        int relativeWidth = logo.size() + 2;
+        int relativeWidth = 27;
 
-        for (auto & i : logo) {
-            for (char j : i) {
-                std::cout << j;
+        for (int i = 0; i < logo.size(); i++) {
+            for (int j = 0; j < logo[i].size(); j++) {
+                std::cout << logo[i][j];
             }
             std::cout << "\n";
         }
@@ -191,7 +191,7 @@ namespace ApeX {
 
         ApeX::Print::centeredMessage("APE-X", relativeWidth, true);
         if (Z_VER == 0) {
-            ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + " " + VERSION_TYPE, 27, true);
+            ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + " " + VERSION_TYPE, relativeWidth, true);
         }
         else {
             ApeX::Print::centeredMessage("Version " + std::to_string(X_VER) + "." + std::to_string(Y_VER) + "." + std::to_string(Z_VER) + " " + VERSION_TYPE, relativeWidth, true);
@@ -199,7 +199,7 @@ namespace ApeX {
 
         if(VERSION_TYPE != NULL){
             std::string versionType = VERSION_TYPE;
-            for(char & i : versionType){
+            for (int i = 0; i < versionType.length(); i++) {
                 i = ::toupper(i);
             }
             ApeX::Print::centeredMessage(versionType + ". WORK IN PROGRESS", relativeWidth, true);
@@ -208,10 +208,8 @@ namespace ApeX {
         std::cout << "\n";
 
         ApeX::Copyright::displayCopyrightInfo();
-        ApeX::Print::centeredMessage("", relativeWidth);
-        ApeX::Utils::loading(3);
 
-        //Sleep(3000);
+        Sleep(3000);
         system("cls");
     }
 
@@ -518,7 +516,7 @@ namespace ApeX {
         }
     }
 
-    void Utils::loading(int amountOfIterations, float animationSpeed)
+    /*void Utils::loading(int amountOfIterations, float animationSpeed)
     {
         for (int i = 0; i < amountOfIterations; i++) {
             std::cout << "|";
@@ -534,6 +532,6 @@ namespace ApeX {
             Sleep(animationSpeed * 1000);
             std::cout << "\b";
         }
-    }
+    } */
 
 }
