@@ -6,11 +6,11 @@ P.S. This readme is not finished and it doesn't include some new methods. To see
 0.2.3 alpha
 # How to install
 Go to the releases tab and pick a version of ApeX library of your choice. There are always 2 versions of the library: stable and experimental. Download ApeX.zip archive and unpack its content into your project's folder. Then in the code write
-```
+```C++
 #include "dir/ApeX.h"
 ```
 and 
-```
+```C++
 #pragma comment(lib, "dir/ApeX.lib")
 ```
 # Classes and methods
