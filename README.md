@@ -14,4 +14,63 @@ and
 #pragma comment(lib, "dir/ApeX.lib")
 ```
 # Classes and methods
+```C++
+class Print
+```
+This class contains methods to display messages in console in a certain way
+```C++
+static void stylizedMessage(std::string message, int windowWidth, char cornerStyle = '+', 
+char topAndBottomBorderStyle = '-', char sideBorderStyle = '|', bool isCentered = true, 
+bool printTop = true, bool printBottom = true)
+```
+Displays a message in console in a pseudo-frame
+
+Arguments:
+
+```std::string message``` - determines what message should be displayed
+
+```int windowWidth``` - determines the width of the pseudo-frame
+
+```char cornerStyle``` - determines the character of corners of the pseudo-frame
+
+```char topAndBottomBorderStyle``` - determines the character of top and bottom of the pseudo-frame
+
+```char sideBorderStyle``` - determines the character of borders of the pseudo-frame
+
+```bool isCentered``` - determines weather the message should be centered relatively to the width of the pseudo-frame
+
+```bool printTop``` - determines weather the top part of the pseudo-frame should be displayed
+
+```bool printBottom``` - determines weather the bottom part of the pseudo-frame should be displayed
+
+```C++
+static void centeredMessage(std::string message, int relativeWidth, bool endLine = false)
+```
+Displays a message, centered relatively to the inserted width
+
+Arguments:
+
+```std::string message``` - determines what message should be displayed
+
+```int relativeWidth``` - determines the width which will be used to center the message
+
+```bool endLine``` - determines weather the line should be ended after the message
+
+```C++
+static void line(int lineType, int length, char texture = '-', bool hasCorners = true, char cornerTexture = '+')
+```
+Displays a line of characters
+
+Arguments:
+
+```int lineType``` - determines weather the line should be horizontal or vertical (1 for horizontal and 2 for vertical)
+
+```int length``` - determines the length of the line
+
+```char texture``` - determines the character the line should be made of
+
+```bool hasCorners``` - determines weather the beginning and the end of the line should have a different texture
+
+```char cornerTexture``` - determines the character the beginning and the end of the line should be made of
+
 [NYI]
