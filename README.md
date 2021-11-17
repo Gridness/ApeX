@@ -74,4 +74,53 @@ Arguments:
 
 ```char cornerTexture``` - determines the character the beginning and the end of the line should be made of
 
-[NYI]
+```C++
+class Output
+```
+This class contains methods display 1D and 2D vectors in console in a certain way
+
+```C++
+static void showVector(std::vector<data_type> vector, int rows = 1, bool tabulated = false)
+```
+Displays a 1D vector's containment
+
+Arguments:
+
+```std::vector<data_type> vector``` - determines the 1D vector to be displayed
+
+```int rows``` - determines the amount of rows vectors' containment to be separated into
+
+```bool tabulated``` - determines weather vectors' containment should be displayed with tabulation
+
+```C++
+static void show2DVector(std::vector<std::vector<data_type>> vector2D, int rows = 1, bool tabulated = false)
+```
+Displays a 2D vector's containment
+
+Arguments:
+
+```std::vector<std::vector<data_type>> vector``` - determines the 1D vector to be displayed
+
+```int rows``` - determines the amount of rows vectors' containment to be separated into
+
+```bool tabulated``` - determines weather vectors' containment should be displayed with tabulation
+
+```C++
+class Copyright
+```
+This class contains methods to display copyright information in console. This class is temporarily public and will be automized
+
+```C++
+static void copyright();
+```
+Displays copyright screen
+
+```C++
+class Error
+```
+This class contains methods to display errors and their definitions
+
+```C++
+static void error(errorType errorType, std::string errorMessage, std::string additionalInfo = NULL)
+```
+This method is used inside the library to trigger different errors
