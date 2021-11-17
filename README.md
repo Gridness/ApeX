@@ -125,4 +125,4 @@ static void error(errorType errorType, std::string errorMessage, std::string add
 ```
 This method is used inside the library to trigger different errors
 # License
-[MIT](https://github.com/Gridness/ApeX/blob/stable/LICENSE)
+[MIT](https://raw.githubusercontent.com/Gridness/ApeX/stable/LICENSE)
