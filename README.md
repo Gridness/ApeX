@@ -57,7 +57,8 @@ Arguments:
 ```bool endLine``` - determines weather the line should be ended after the message
 
 ```C++
-static void line(int lineType, int length, char texture = '-', bool hasCorners = true, char cornerTexture = '+')
+static void line(int lineType, int length, char texture = '-', 
+bool hasCorners = true, char cornerTexture = '+')
 ```
 Displays a line of characters
 
