@@ -80,7 +80,8 @@ class Output
 This class contains methods display 1D and 2D vectors in console in a certain way
 
 ```C++
-static void showVector(std::vector<data_type> vector, int rows = 1, bool tabulated = false)
+static void showVector(std::vector<data_type> vector, 
+int rows = 1, bool tabulated = false)
 ```
 Displays a 1D vector's containment
 
@@ -93,7 +94,8 @@ Arguments:
 ```bool tabulated``` - determines weather vectors' containment should be displayed with tabulation
 
 ```C++
-static void show2DVector(std::vector<std::vector<data_type>> vector2D, int rows = 1, bool tabulated = false)
+static void show2DVector(std::vector<std::vector<data_type>> vector2D, 
+int rows = 1, bool tabulated = false)
 ```
 Displays a 2D vector's containment
 
