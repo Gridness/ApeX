@@ -124,3 +124,5 @@ This class contains methods to display errors and their definitions
 static void error(errorType errorType, std::string errorMessage, std::string additionalInfo = NULL)
 ```
 This method is used inside the library to trigger different errors
+# License
+[MIT](https://github.com/Gridness/ApeX/blob/stable/LICENSE)
