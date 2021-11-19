@@ -99,7 +99,7 @@ Displays a 2D vector's containment
 
 Arguments:
 
-```std::vector<std::vector<data_type>> vector``` - determines the 1D vector to be displayed
+```std::vector<std::vector<data_type>> vector``` - determines the 2D vector to be displayed
 
 ```int rows``` - determines the amount of rows vectors' containment to be separated into
 
