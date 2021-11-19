@@ -10,6 +10,7 @@
 #include <sstream>
 #include <ctime>
 #include <cctype>
+#include <cstdlib>
 
 #define FORMATTING_DEFINES 0
 #if FORMATTING_DEFINES
@@ -34,7 +35,7 @@
 
 #define X_VER 0
 #define Y_VER 1
-#define Z_VER 0
+#define Z_VER 1
 
 #define DEV_BUILD 1
 #if DEV_BUILD
@@ -230,6 +231,22 @@ namespace ApeX {
 	private:
 		// static bool firstLaunch;
 		static void displayCopyrightInfo();
+	};
+
+	/*This class contains different methods for RNG
+	*/
+	class Random {
+	public:
+		/*Returns a random number from 0 to maxNumber
+		Arguments:
+			• maxNumber - determines the upper limit of the number generation
+			• mode - determines the RNG mode:
+				1) default - generates a truly random number
+				2) custom - allows to use a custom seed
+			• seed - determines the algorithm of the number generation (only for "custom" mode)
+		If you want to generate more than 1 number, please, use Sleep(1000) after each generation
+		*/
+		static int rnd(int maxNumber, std::string mode = "default", int seed = 0);
 	};
 
 	/*This class contains different utils methods for differentt purposes
