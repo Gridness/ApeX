@@ -17,7 +17,7 @@ class Print
 ```
 This class contains methods to display messages in console in a certain way
 ```C++
-static void stylizedMessage(std::string message, int windowWidth, char cornerStyle = '+', 
+static void stylizedMessage(std::string message, int windowWidth = 0, char cornerStyle = '+', 
 char topAndBottomBorderStyle = '-', char sideBorderStyle = '|', bool isCentered = true, 
 bool printTop = true, bool printBottom = true)
 ```
@@ -27,7 +27,7 @@ Arguments:
 
 ```std::string message``` - determines what message should be displayed
 
-```int windowWidth``` - determines the width of the pseudo-frame
+```int windowWidth``` - determines the width of the pseudo-frame. If no such length was given, it will be equal to ```message.length() + 4```
 
 ```char cornerStyle``` - determines the character of corners of the pseudo-frame
 
@@ -42,7 +42,7 @@ Arguments:
 ```bool printBottom``` - determines weather the bottom part of the pseudo-frame should be displayed
 
 ```C++
-static void centeredMessage(std::string message, int relativeWidth, bool endLine = false)
+static void centeredMessage(std::string message, int relativeWidth  = 0, bool endLine = false)
 ```
 Displays a message, centered relatively to the inserted width
 
@@ -50,7 +50,7 @@ Arguments:
 
 ```std::string message``` - determines what message should be displayed
 
-```int relativeWidth``` - determines the width which will be used to center the message
+```int relativeWidth``` - determines the width which will be used to center the message. If no such length was given, it will be equal to ```message.length() + 4```
 
 ```bool endLine``` - determines weather the line should be ended after the message
 
