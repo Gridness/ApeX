@@ -106,6 +106,44 @@ Arguments:
 ```bool tabulated``` - determines weather vectors' containment should be displayed with tabulation
 
 ```C++
+class Utils
+```
+This class contains different utils methods for differentt purposes
+
+```C++
+static void loading(int amountOfIterations = 1, float animationSpeed = 0.2)
+```
+Shows a loading animation in console
+
+Arguments:
+
+```amountOfIterations``` - determines the 1amount of full animation loops
+
+```animationSpeed``` - determines the animation phase shift speed
+
+```C++
+class Random
+```
+This class contains different methods for RNG
+
+```C++
+static int rnd(int maxNumber, std::string mode = "default", int seed = 0)
+```
+Returns a random number from 0 to maxNumber. This method uses ```<ctime>``` to exclude pseudo-random generation, so if you want to generate more than 1 number at a time, please, use Sleep(1000) after each generation
+
+Arguments:
+
+```maxNumber``` - determines the upper limit of the number generation
+
+```mode``` - determines the RNG mode
+| Mode  | Action |
+| ------------- | ------------- |
+| default  |  generates a truly random number |
+| custom  | allows to use a custom seed |
+
+```seed``` - determines the algorithm of the number generation
+
+```C++
 class Copyright
 ```
 This class contains methods to display copyright information in console. This class is temporarily public and will be automized
