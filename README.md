@@ -11,6 +11,8 @@ and
 ```C++
 #pragma comment(lib, "dir/ApeX.lib")
 ```
+
+Please note that ```.lib``` files can be only used inside Visual Studio and CLion, otherwise if you are compiling on Windows which means you use MinGW, you need to use ```.a``` version of the library which is not available yet
 # Classes and methods
 ```C++
 class Print
