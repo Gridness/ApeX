@@ -164,9 +164,5 @@ This class contains methods to display errors and their definitions
 static void error(errorType errorType, std::string errorMessage, std::string additionalInfo = NULL)
 ```
 This method is used inside the library to trigger different errors
-# Issues
-- [ ] https://github.com/Gridness/ApeX/issues/1
-- [ ] https://github.com/Gridness/ApeX/issues/2
-- [x] https://github.com/Gridness/ApeX/issues/3
 # License
 [MIT](https://raw.githubusercontent.com/Gridness/ApeX/stable/LICENSE)
