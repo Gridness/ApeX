@@ -1,8 +1,9 @@
 # ApeX
 ApeX is a static library for C++ software. Originally it was created to make C++ studying easier, so it has functions to complete common tasks with just one line of code. But who knows, maybe this library will get bigger some day.
 # Recommended version
-0.1.1 beta
+0.2 beta
 # How to install
+### Visual Studio and CLion
 Go to the releases tab and pick a version of ApeX library of your choice. Download ApeX.zip archive and unpack its content into your project's folder. Then in the code write
 ```C++
 #include "dir/ApeX.h"
@@ -11,8 +12,30 @@ and
 ```C++
 #pragma comment(lib, "dir/ApeX.lib")
 ```
-
-Please note that ```.lib``` files can be only used inside Visual Studio and CLion, otherwise if you are compiling on Windows which means you use MinGW, you need to use ```.a``` version of the library which is not available yet
+Note that you don't need ```.a``` file from the archive
+### MinGW (Windows only)
+Go to the releases tab and pick a version of ApeX library of your choice. Download ApeX.zip archive and unpack its content into your project's folder. Then in the code write
+```C++
+#include "dir/ApeX.h"
+```
+Note that you don't need ```.lib``` file from the archive. Also, to compile your code, you should now write
+```
+g++ your_code.cpp ApeX.a
+```
+instead
+# Global variables
+| Variable | Data type | Action |
+| :---:        | :---:          | :---:         |
+| ```ApeX::RESET```  | ```std::string```     | Resets all formatting options    |
+| ```ApeX::BLACK```    | ```std::string```       | Turns all subsequent characters in BLACK      |
+| ```ApeX::RED```    | ```std::string```       | Turns all subsequent characters in RED      |
+| ```ApeX::GREEN```    | ```std::string```       | Turns all subsequent characters in GREEN      |
+| ```ApeX::YELLOW```    | ```std::string```       | Turns all subsequent characters in YELLOW      |
+| ```ApeX::BLUE```    | ```std::string```       | Turns all subsequent characters in BLUE      |
+| ```ApeX::MAGENTA```    | ```std::string```       | Turns all subsequent characters in MAGENTA      |
+| ```ApeX::CYAN```    | ```std::string```       | Turns all subsequent characters in CYAN      |
+| ```ApeX::GRAY```    | ```std::string```       | Turns all subsequent characters in GRAY      |
+| ```ApeX::WHITE```    | ```std::string```       | Turns all subsequent characters in WHITE      |
 # Classes and methods
 ```C++
 class Print
@@ -57,14 +80,18 @@ Arguments:
 ```bool endLine``` - determines weather the line should be ended after the message
 
 ```C++
-static void line(int lineType, int length, char texture = '-', 
+static void line(std::string lineType, int length, char texture = '-', 
 bool hasCorners = true, char cornerTexture = '+')
 ```
 Displays a line of characters
 
 Arguments:
 
-```int lineType``` - determines weather the line should be horizontal or vertical (1 for horizontal and 2 for vertical)
+```std::string lineType``` - determines weather the line should be horizontal or vertical
+| Line type  | Action |
+| ------------- | ------------- |
+| horizontal  |  makes the line horizontal |
+| vertical  | makes the line vertical |
 
 ```int length``` - determines the length of the line
 
@@ -124,6 +151,19 @@ Arguments:
 ```animationSpeed``` - determines the animation phase shift speed
 
 ```C++
+static float clamp(float value, float min, float max) { return fmax(fmin(value, max), min); };
+```
+Locks a given number between the min and max values
+
+Arguments:
+
+```float value``` - determines the value to be locked
+
+```float min``` - determines the bottom limit of comparison
+
+```float max``` - determines the upper limit of comparison
+
+```C++
 class Random
 ```
 This class contains different methods for RNG
@@ -146,14 +186,46 @@ Arguments:
 ```seed``` - determines the algorithm of the number generation
 
 ```C++
+class Vector
+```
+This class contains different methods for vectors
+
+```C++
+static float length(vecDIMENSION const& vector) { return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z); };
+```
+Returns a length of a vector
+
+Arguments:
+
+```vecDIMENSION const& vector``` - determines the vector which length will be evaluated
+
+```C++
+static vec3 norm(vec3 vector) { return vector / length(vector); };
+```
+Returns a normalized 3D vector of a given 3D vector
+
+Arguments:
+
+```vec3 vector``` - determines the 3D vector to normalize
+
+```C++
+static float Q_rsqrt(float number);
+```
+Returns a reverse square root. This is a quick reverse square root algorithm used in Quake 3
+
+Arguments:
+
+```float number``` - number to get a reverse square root value of
+
+```C++
 class Copyright
 ```
-This class contains methods to display copyright information in console. This class is temporarily public and will be automized
+This class contains methods to display copyright information in console
 
 ```C++
 static void copyright();
 ```
-Displays copyright screen
+Displays copyright screen. Be noticed that without this method using all other methods of the library will end up with your program's crash
 
 ```C++
 class Error
