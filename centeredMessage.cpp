@@ -3,6 +3,11 @@
 namespace ApeX {
     void Print::centeredMessage(std::string message, int relativeWidth, bool endLine)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (relativeWidth < message.length()) {
             relativeWidth = message.length() + 4;
         }

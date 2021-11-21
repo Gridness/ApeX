@@ -3,6 +3,11 @@
 namespace ApeX{
     void Output::showVector(std::vector<int> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -34,6 +39,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<short> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -65,6 +75,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<long> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -96,6 +111,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<float> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -127,6 +147,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<double> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -158,6 +183,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<bool> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -189,6 +219,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<char> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }
@@ -220,6 +255,11 @@ namespace ApeX{
 
     void Output::showVector(std::vector<std::string> vector, int rows, bool tabulated)
     {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (vector.empty()) {
             ApeX::Error::error(ApeX::Error::errorType(4), "An empty or a non-existent vector was given");
         }

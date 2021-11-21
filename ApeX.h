@@ -11,39 +11,15 @@
 #include <ctime>
 #include <cctype>
 #include <cstdlib>
-
-#define FORMATTING_DEFINES 0
-#if FORMATTING_DEFINES
-	#define RESET   "\033[0m"
-	#define BLACK   "\033[30m"      /* Black */
-	#define RED     "\033[31m"      /* Red */
-	#define GREEN   "\033[32m"      /* Green */
-	#define YELLOW  "\033[33m"      /* Yellow */
-	#define BLUE    "\033[34m"      /* Blue */
-	#define MAGENTA "\033[35m"      /* Magenta */
-	#define CYAN    "\033[36m"      /* Cyan */
-	#define WHITE   "\033[37m"      /* White */
-	#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
-	#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
-	#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
-	#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
-	#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
-	#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
-	#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
-	#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
-#endif
+#include <math.h>
 
 #define X_VER 0
-#define Y_VER 1
-#define Z_VER 1
+#define Y_VER 2
+#define Z_VER 0
 
 #define DEV_BUILD 1
 #if DEV_BUILD
 	#define VERSION_TYPE "beta"
-#endif
-
-#if !defined FORMATTING_DEFINES
-	#error FORMATTING_DEFINES is not defined
 #endif
 
 #if !defined DEV_BUILD
@@ -54,6 +30,56 @@
 
 /*Namespace of the ApeX library*/
 namespace ApeX {
+
+	/*If added to a string, resets all formatiing options*/
+	extern const std::string RESET;
+
+	/*If added to a string, sets all subsequent characters in BLACK*/
+	extern const std::string BLACK;
+	/*If added to a string, sets all subsequent characters in RED*/
+	extern const std::string RED;
+	/*If added to a string, sets all subsequent characters in GREEN*/
+	extern const std::string GREEN;
+	/*If added to a string, sets all subsequent characters in YELLOW*/
+	extern const std::string YELLOW;
+	/*If added to a string, sets all subsequent characters in BLUE*/
+	extern const std::string BLUE;
+	/*If added to a string, sets all subsequent characters in MAGENTA*/
+	extern const std::string MAGENTA;
+	/*If added to a string, sets all subsequent characters in BLACK*/
+	extern const std::string CYAN;
+	/*If added to a string, sets all subsequent characters in GRAY*/
+	extern const std::string GRAY;
+	/*If added to a string, sets all subsequent characters in WIHTE*/
+	extern const std::string WIHTE;
+
+	/*Allows to determine a vector in 2D space
+	Taken from https://www.youtube.com/watch?v=n4zUgtDk95w [10:06]
+	*/
+	struct vec2 {
+		float x, y;
+
+		vec2(float value) : x(value), y(value) {}
+		vec2(float _x, float _y) : x(_x), y(_y) {}
+
+		vec2 operator+(vec2 const& other) { return vec2(x + other.x, y + other.y); }
+		vec2 operator-(vec2 const& other) { return vec2(x - other.x, y - other.y); }
+		vec2 operator*(vec2 const& other) { return vec2(x * other.x, y * other.y); }
+		vec2 operator/(vec2 const& other) { return vec2(x / other.x, y / other.y); }
+	};
+
+	/*Allows to determine a vector in 3D space*/
+	struct vec3 {
+		float x, y, z;
+
+		vec3(float value) : x(value), y(value), z(value) {}
+		vec3(float _x, float _y, float _z) : x(_x), y(_y),  z(_z) {}
+
+		vec3 operator+(vec3 const& other) { return vec3(x + other.x, y + other.y, z + other.z); }
+		vec3 operator-(vec3 const& other) { return vec3(x - other.x, y - other.y, z - other.z); }
+		vec3 operator*(vec3 const& other) { return vec3(x * other.x, y * other.y, z * other.z); }
+		vec3 operator/(vec3 const& other) { return vec3(x / other.x, y / other.y, z / other.z); }
+	};
 
 	/*This class contains methods to display messages in console
 	in a certain way
@@ -90,14 +116,7 @@ namespace ApeX {
 			• hasCorners - determines weather the beginning and the end of the line should have a different texture
 			• cornerTexture - determines the character the beginning and the end of the line should be made of
 		*/
-		static void line(int lineType, int length, char texture = '-', bool hasCorners = true, char cornerTexture = '+');
-	};
-
-	/*This class contains methods to format messages displayed in console
-	*/
-	class Format {
-	public:
-		static void applyColor(std::string mode = "default", std::string message = NULL);
+		static void line(std::string lineType, int length, char texture = '-', bool hasCorners = true, char cornerTexture = '+');
 	};
 
 	/*This class contains methods display 1D and 2D vectors
@@ -220,16 +239,16 @@ namespace ApeX {
         static void show2DVector(std::vector<std::vector<std::string>> vector2D, int rows = 1, bool tabulated = false);
 	};
 
-	/*This class contains methods to display copyright information
-	in console. This class is temporarily public and will be
-	automized
+	extern bool gaw823_21lfa;
+
+	/*This class contains methods to display copyright information in console
 	*/
 	class Copyright {
 	public:
-        /*Displays copyright screen*/
+        /*Displays copyright screen. This method has to be used before any
+		other methods of the library*/
 		static void copyright();
 	private:
-		// static bool firstLaunch;
 		static void displayCopyrightInfo();
 	};
 
@@ -249,6 +268,31 @@ namespace ApeX {
 		static int rnd(int maxNumber, std::string mode = "default", int seed = 0);
 	};
 
+	/*This class contains different methods for vectors
+	*/
+	class Vector {
+	public:
+		/*Returns a length of a vector
+		Arguments:
+			• vector - determines the vector which length will be evaluated
+		*/
+		static float length(vec2 const& vector) { return sqrt(vector.x * vector.x + vector.y * vector.y); };
+		static float length(vec3 const& vector) { return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z); };
+
+		/*Returns a normalized 3D vector of a given 3D vector
+		Arguments:
+			• vector - determines the 3D vector to normalize
+		*/
+		static vec3 norm(vec3 vector) { return vector / length(vector); };
+
+		/*Returns a reverse square root
+		Arguments:
+			• number - number to get a reverse square root value of
+		This is a quick reverse square root algorithm used in Quake 3
+		*/
+		static float Q_rsqrt(float number);
+	};
+
 	/*This class contains different utils methods for differentt purposes
 	*/
 	class Utils {
@@ -259,6 +303,13 @@ namespace ApeX {
 			• animationSpeed - determines the animation phase shift speed
 		*/
 		static void loading(int amountOfIterations = 1, float animationSpeed = 0.2);
+
+		/*Re
+		Arguments:
+			• amountOfIterations - determines the 1amount of full animation loops
+			• animationSpeed - determines the animation phase shift speed
+		*/
+		static float clamp(float value, float min, float max) { return fmax(fmin(value, max), min); };
 	};
 
 	/*This class contains methods to display errors

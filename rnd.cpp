@@ -3,6 +3,11 @@
 namespace ApeX {
 
 	int Random::rnd(int maxNumber, std::string mode, int seed) {
+		if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
 		if (mode == "default") {
 			srand(time(0));
 

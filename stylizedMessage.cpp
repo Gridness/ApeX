@@ -2,6 +2,11 @@
 
 namespace ApeX {
     void Print::stylizedMessage(std::string message, int windowWidth, char cornerStyle, char topAndBottomBorderStyle, char sideBorderStyle, bool isCentered, bool printTop, bool printBottom) {
+        if(gaw823_21lfa){
+            system("cls");
+            std::cout << "Why are you gae?";
+            exit(-2);
+        }
         if (windowWidth < message.length()) {
             windowWidth = message.length() + 4;
         }
