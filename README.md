@@ -1,7 +1,8 @@
 # ApeX
 ApeX is a static library for C++ software. Originally it was created to make C++ studying easier, so it has functions to complete common tasks with just one line of code. But who knows, maybe this library will get bigger some day.
 # Recommended version
-0.2 beta
+0.2 beta (MinGW)
+0.1.1 beta (Visual Studio and CLion)
 # How to install
 ### Visual Studio and CLion
 Go to the releases tab and pick a version of ApeX library of your choice. Download ApeX.zip archive and unpack its content into your project's folder. Then in the code write
