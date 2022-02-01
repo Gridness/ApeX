@@ -77,7 +77,7 @@ Arguments:
 
 ```std::string message``` - determines what message should be displayed
 
-```int relativeWidth``` - determines the width which will be used to center the message. If no such length was given, it will be equal to ```message.length() + 4```
+```int relativeWidth``` - determines the width which will be used to center the message. If no such length was given, it would be made equal to ```message.length() + 4```
 
 ```bool endLine``` - determines weather the line should be ended after the message
 
