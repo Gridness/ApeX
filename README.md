@@ -62,11 +62,11 @@ Arguments:
 
 ```char sideBorderStyle``` - determines the character of borders of the pseudo-frame
 
-```bool isCentered``` - determines weather the message should be centered relatively to the width of the pseudo-frame
+```bool isCentered``` - determines whether the message should be centered relatively to the width of the pseudo-frame
 
-```bool printTop``` - determines weather the top part of the pseudo-frame should be displayed
+```bool printTop``` - determines whether the top part of the pseudo-frame should be displayed
 
-```bool printBottom``` - determines weather the bottom part of the pseudo-frame should be displayed
+```bool printBottom``` - determines whether the bottom part of the pseudo-frame should be displayed
 
 ```C++
 static void centeredMessage(std::string message, int relativeWidth  = 0, bool endLine = false)
@@ -79,7 +79,7 @@ Arguments:
 
 ```int relativeWidth``` - determines the width which will be used to center the message. If no such length was given, it would be made equal to ```message.length() + 4```
 
-```bool endLine``` - determines weather the line should be ended after the message
+```bool endLine``` - determines whether the line should be ended after the message
 
 ```C++
 static void line(std::string lineType, int length, char texture = '-', 
@@ -89,7 +89,7 @@ Displays a line of characters
 
 Arguments:
 
-```std::string lineType``` - determines weather the line should be horizontal or vertical
+```std::string lineType``` - determines whether the line should be horizontal or vertical
 | Line type  | Action |
 | ------------- | ------------- |
 | horizontal  |  makes the line horizontal |
@@ -99,7 +99,7 @@ Arguments:
 
 ```char texture``` - determines the character the line should be made of
 
-```bool hasCorners``` - determines weather the beginning and the end of the line should have a different texture
+```bool hasCorners``` - determines whether the beginning and the end of the line should have a different texture
 
 ```char cornerTexture``` - determines the character the beginning and the end of the line should be made of
 
@@ -120,7 +120,7 @@ Arguments:
 
 ```int rows``` - determines the amount of rows vectors' containment to be separated into
 
-```bool tabulated``` - determines weather vectors' containment should be displayed with tabulation
+```bool tabulated``` - determines whether vectors' containment should be displayed with tabulation
 
 ```C++
 static void show2DVector(std::vector<std::vector<data_type>> vector2D, 
@@ -134,7 +134,7 @@ Arguments:
 
 ```int rows``` - determines the amount of rows vectors' containment to be separated into
 
-```bool tabulated``` - determines weather vectors' containment should be displayed with tabulation
+```bool tabulated``` - determines whether vectors' containment should be displayed with tabulation
 
 ```C++
 class Utils
